@@ -2,9 +2,19 @@
   "name": "practice",
   "version": "1.0.0",
   "description": "practice",
-   "main": "./buildServers/srcServer.js",
+  "main": "./dist/srcServer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "node dist/buildServers/startServer.js",
+    "start": "npm-run-all --parallel security-check open:src lint:watch",
+    "open:src": "node dist/buildServers/srcServer.js",
+    "security-check": "nsp check",
+    "lint":"esw webpack.config.* src buildServers dist/src dist/buildServers",
+    "lint:watch":"npm run lint -- --watch",
+    "localtunnel": "lt --port 3000 --subdomain eightyeight",
+    "share": "npm-run-all --parallel open:src localtunnel",
+    "typescript": "tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -17,6 +27,8 @@
   },
   "homepage": "https://github.com/mehul230588/practice#readme",
   "dependencies": {
+    "@types/node": "^9.3.0",
+    "typescript": "^2.6.2",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
