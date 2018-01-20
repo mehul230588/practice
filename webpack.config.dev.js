@@ -1,4 +1,4 @@
-import path from 'path';
+var path = require('path');
 
 export default {
   debug: true,
@@ -17,7 +17,7 @@ export default {
   ],
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['typescript']},
       {test: /\.css$/, loaders: ['style','css']}
     ]
   }

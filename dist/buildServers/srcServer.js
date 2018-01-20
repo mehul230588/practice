@@ -1,18 +1,15 @@
-"use strict";
-/* eslint-disable no-console */
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
+var express = require('express');
 var path = require('path');
-const open_1 = require("open");
-const webpack_1 = require("webpack");
-const webpack_config_dev_1 = require("../webpack.config.dev");
+var open1 = require('open');
+var webpack = require('webpack');
+var config = require('../webpack.config.dev');
 const port = 3000;
-const app = express_1();
-const compiler = webpack_1(webpack_config_dev_1.default);
-app.use(require('webpack-dev-middleware')(compiler, {
-    noInfo: true,
-    publicPath: webpack_config_dev_1.default.output.publicPath
-}));
+const app = express();
+const compiler = webpack(config);
+// app.use(require('webpack-dev-middleware')(compiler, {
+//   noInfo: true,
+//   publicPath: config.output.publicPath
+// }));
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '../../src/index.html'));
 });
@@ -21,6 +18,6 @@ app.listen(port, function (err) {
         console.log(err);
     }
     else {
-        open_1('http://localhost:' + port);
+        open1('http://localhost:' + port);
     }
 });

@@ -1,17 +1,17 @@
-import express from 'express';
+var express = require('express');
 var path = require('path');
-import open from 'open';
-import webpack from 'webpack';
-import config from '../webpack.config.dev';
+var open1 =  require('open');
+var webpack = require('webpack');
+var config = require('../webpack.config.dev');
 
 const port = 3000;
 const app = express();
 const compiler = webpack(config);
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
+// app.use(require('webpack-dev-middleware')(compiler, {
+//   noInfo: true,
+//   publicPath: config.output.publicPath
+// }));
 
 
 app.get('/', function(req, res){
@@ -23,6 +23,6 @@ app.listen(port, function(err){
        console.log(err);
    }
    else{
-       open('http://localhost:'+port);
+       open1('http://localhost:'+port);
    }
 });
